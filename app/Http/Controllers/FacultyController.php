@@ -98,7 +98,17 @@ class FacultyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $faculty = Faculty::find($id);
+        $faculty->name = $request->name;
+        $faculty->fatherName = $request->fatherName;
+        $faculty->motherName = $request->motherName;
+        $faculty->contact = $request->contact;
+        $faculty->permanentAddress = $request->permanentAddress;
+        $faculty->dob = $request->dob;
+        $faculty->bloodGroup = $request->bloodGroup;
+        $faculty->save();
+
+        return back()->with('success','Faculty info updated successfully');
     }
 
     /**
@@ -110,5 +120,18 @@ class FacultyController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function deleteFaculty($id)
+    {
+        $faculty = Faculty::find($id);
+        $faculty->delete();
+        return back()->with('success', 'Faculty successfully deleted');
+    }
+
+    public function editFaculty($id)
+    {
+        $faculty = Faculty::find($id);
+        $faculties = Faculty::all();
+        return view('faculty.edit', compact('faculty','faculties'));
     }
 }

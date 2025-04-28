@@ -1,64 +1,62 @@
 @extends('adminlte::page')
 
-@section('title', 'Create New Faculty')
+@section('title', 'Edit Faculty')
 
 @section('content_header')
     <h1>Faculty</h1>
 @stop
 
 @section('content')
-    <p>Create New Faculty</p>
+    <p>Edit Faculty</p>
     @include('layout.alert')
     <div class="row">
         <div class="col-md-5">
             <div class="card card-default">
                 <div class="card-header">
                     <h3 class="card-title">
-                        Faculty Details
+                        Faculty Information
                     </h3>
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action=" {{ route('faculty.store') }} ">
+                    <form method="POST" action=" {{ route('faculty.update', $faculty->id) }} ">
                         @csrf
+                        <input name="_method" type="hidden" value="PATCH">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="faculty">Faculty Name</label>
-                                <input type="text" class="form-control" name="faculty" placeholder="Enter Course Name" autocomplete='off' autofocus='on' required>
+                                <label for="name">Faculty Name</label>
+                                <input type="text" class="form-control" name="name" value="{{ $faculty->name }}" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
                                 <label for="fatherName">Father's Name</label>
-                                <input type="text" class="form-control" name="fatherName" placeholder="Enter Short Name" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="fatherName" value="{{ $faculty->fatherName }}" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
                                 <label for="motherName">Mother's Name</label>
-                                <input type="text" class="form-control" name="motherName" placeholder="Enter No. of Semester" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="motherName" value="{{ $faculty->motherName }}" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
                                 <label for="contact">Contact</label>
-                                <input type="text" class="form-control" name="contact" placeholder="Enter No. of Semester" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="contact" value="{{ $faculty->contact }}" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
-                                <label for="email">email</label>
-                                <input type="email" class="form-control" name="email" placeholder="Enter No. of Semester" autocomplete='off' autofocus='on' required>
-                            </div>
-                            <div class="form-group">
-                                <label for="parmanentAddress">Parmanent Address</label>
-                                <input type="text" class="form-control" name="parmanentAddress" placeholder="Enter No. of Semester" autocomplete='off' autofocus='on' required>
+                                <label for="permanentAddress">Permanent Address</label>
+                                <input type="text" class="form-control" name="permanentAddress" value="{{ $faculty->permanentAddress }}" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
                                 <label for="dob">Date of Birth</label>
-                                <input type="date" class="form-control" name="dob" placeholder="Enter No. of Semester" autocomplete='off' autofocus='on' required>
+                                <input type="date" class="form-control" name="dob" value="{{ $faculty->dob }}" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
                                 <label for="bloodGroup">Blood Group</label>
-                                <input type="text" class="form-control" name="bloodGroup" placeholder="Enter No. of Semester" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="bloodGroup" value="{{ $faculty->bloodGroup }}" autocomplete='off' autofocus='on' required>
                             </div>
+
                             <div class="form-group">
-                                <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> Save</button>
+                                <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> Update</button>
                             </div>
                         </div>
-                    </form>
+
                 </div>
             </div>
         </div>
@@ -124,4 +122,5 @@
             $('#myTable').DataTable();
         } );
     </script>
+
 @stop

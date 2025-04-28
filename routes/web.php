@@ -46,6 +46,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::post('/loginAuth', [LoginController::class, 'loginAuth']);
 Route::get('/genUser', [LoginController::class, 'genUser']);
 
+Route::get('/deleteFaculty/{id}', [FacultyController::class, 'deleteFaculty']);
+Route::get('/editFaculty/{id}', [FacultyController::class, 'editFaculty']);
+
 
 Route::post('logout', [LogoutController::class, 'index']);
 

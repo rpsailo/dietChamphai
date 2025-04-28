@@ -13,7 +13,7 @@ class Faculty extends Model
         'fatherName',
         'motherName',
         'contact',
-        'parmanentAddress',
+        'permanentAddress',
         'dob',
         'bloodGroup',
     ];
