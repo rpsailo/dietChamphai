@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="card-body">
-                    <table class="table table-hover text-nowrap">
+                    <table id="myTable" class="table table-hover text-nowrap">
                         <thead>
                             <tr>
                                 <th>#</th>
