@@ -69,7 +69,7 @@
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>#</th>
                                 <th>UserName</th>
                                 <th>Email</th>
                                 <th>Role</th>
@@ -98,11 +98,16 @@
 @stop
 
 @section('css')
-    {{-- Add here extra stylesheets --}}
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+<link href="/vendor/datatables/css/datatables.min.css" rel="stylesheet">
 @stop
 
 @section('js')
+    <script src="/vendor/datatables/js/datatables.min.js"></script>
     <script> console.log("DIET, CHAMPHAI"); </script>
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
+    </script>
 
 @stop
