@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Faculty;
+use App\Models\User;
+
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class FacultyController extends Controller
 {
@@ -11,9 +16,14 @@ class FacultyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        //
+        $faculties = Faculty::all();
+        return view('faculty.create',compact('faculties'));
     }
 
     /**
@@ -34,7 +44,27 @@ class FacultyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        $faculty = new Faculty;
+        $faculty->name = $request->faculty;
+        $faculty->fatherName = $request->fatherName;
+        $faculty->motherName = $request->motherName;
+        $faculty->contact = $request->contact;
+        $faculty->permanentAddress = $request->parmanentAddress;
+        $faculty->dob = $request->dob;
+        $faculty->bloodGroup = $request->bloodGroup;
+        $faculty->save();
+
+        $user = new User;
+        $user->name = $request->faculty;
+        $user->email = $request->faculty."@gmail.com";
+        $user->password = hash::make("pass");
+        $user->role = "Faculty";
+        $user->save();
+
+
+
+        return back()->with('success','Faculty Details successfully Added. Usename : '.$request->faculty."@gmail.com"." Passowrd : pass");
     }
 
     /**
