@@ -51,7 +51,14 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $subject = new Subject;
+        $subject->courseId = $request->courseId;
+        $subject->facultyId = $request->facultyId;
+        $subject->name = $request->name;
+        $subject->semester = $request->semester;
+        $subject->save();
+
+        return back()->with('success','New Subject Added');
     }
 
     /**

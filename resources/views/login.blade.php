@@ -84,5 +84,5 @@
 @stop
 
 @section('auth_footer')
-   <center>DIET, Champhai</center>
+   <center>DIET, Champhai CMS</center>
 @stop

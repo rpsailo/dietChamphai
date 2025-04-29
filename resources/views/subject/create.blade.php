@@ -24,7 +24,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="Course">Course Name</label>
-                                <select name="course" id="" class="form-control" required>
+                                <select name="courseId" id="" class="form-control" required>
                                     <option value="" selected>Select Course</option>
                                     @foreach($courses as $course)
                                         <option value="{{ $course->id }}">{{ $course->name }}</option>
@@ -33,7 +33,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="faculty">Faculty</label>
-                                <select name="faculty" id="" class="form-control" required>
+                                <select name="facultyId" id="" class="form-control" required>
                                     <option value="" selected>Select Faculty</option>
                                     @foreach($faculties as $faculty)
                                         <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
@@ -46,12 +46,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="semester">No. of Semester</label>
-                                <select name="semester" id="" class="form-control" required>
-                                    <option value="" selected>Select Faculty</option>
-                                    @foreach($faculties as $faculty)
-                                        <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" name="semester" class="form-control" autocomplete="off" required>
                             </div>
                             <div class="form-group">
                                 <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> Save</button>
@@ -78,17 +73,18 @@
                                 <th>Course Name</th>
                                 <th>Faculty Name</th>
                                 <th>Subject Name</th>
-                                <td>Semester</th>
+                                <th>Semester</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($subjects as $key=>$subject)
                             @php $course = $courses->where('id',$subject->courseId)->first() @endphp
+                            @php $faculty = $faculties->where('id',$subject->facultyId)->first() @endphp
                             <tr>
                                 <td>{{ $key+1 }}</td>
-                                <td>{{ $subject->course->name }}</td>
-                                <td>{{ $subject->name }}</td>
+                                <td>{{ $course->name }}</td>
+                                <td>{{ $faculty->name }}</td>
                                 <td>{{ $subject->name }}</td>
                                 <td>{{ $subject->semester }}</td>
                                 <td>

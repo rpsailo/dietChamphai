@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'DIET Champhai',
+    'title' => 'DIET Champhai CMS',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>DIET</b>CHP',
+    'logo' => '<b>DIET</b>CMS',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
