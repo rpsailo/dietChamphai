@@ -19,34 +19,35 @@
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action=" {{ route('subject.store') }} ">
+                    <form method="POST" action=" {{ route('subject.update', $subject->id) }}">
                         @csrf
+                        <input name="_method" type="hidden" value="PATCH">
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="Course">Course Name</label>
                                 <select name="courseId" id="" class="form-control" required>
-                                    <option value="" selected>Select Course</option>
-                                    @foreach($courses as $course)
-                                        <option value="{{ $course->id }}">{{ $course->name }}</option>
+                                    <option value="{{ $course->id }}" selected>{{ $course->name }}</option>
+                                    @foreach($courses as $cou)
+                                        <option value="{{ $cou->id }}">{{ $cou->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="faculty">Faculty</label>
                                 <select name="facultyId" id="" class="form-control" required>
-                                    <option value="" selected>Select Faculty</option>
-                                    @foreach($faculties as $faculty)
-                                        <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
+                                    <option value="{{ $faculty->id }}" selected>{{ $faculty->name }}</option>
+                                    @foreach($faculties as $fa)
+                                        <option value="{{ $fa->id }}">{{ $fa->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="name">Subject Name</label>
-                                <input type="text" class="form-control" name="name" placeholder="Enter Short Name" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="name" value="{{ $subject->name }}" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
                                 <label for="semester">Semester</label>
-                                <input type="text" name="semester" class="form-control" autocomplete="off" required>
+                                <input type="text" name="semester" class="form-control" value="{{ $subject->semester }}" autocomplete="off" required>
                             </div>
                             <div class="form-group">
                                 <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> Save</button>

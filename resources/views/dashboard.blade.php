@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <p>Welcome to DIET, Champhai App</p>
+    <p>Welcome to DIET, Champhai CMS</p>
     <hr>
     @include('layout.alert')
     <div class="container">

@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\FacultyController;
 
 /*
@@ -33,6 +34,7 @@ Route::resource('user', UserController::class);
 Route::resource('course', CourseController::class);
 Route::resource('subject', SubjectController::class);
 Route::resource('faculty', FacultyController::class);
+Route::resource('student', StudentController::class);
 
 Route::get('/editUser/{id}', [UserController::class, 'editUser']);
 Route::get('/deleteUser/{id}', [UserController::class, 'deleteUser']);
@@ -48,6 +50,9 @@ Route::get('/genUser', [LoginController::class, 'genUser']);
 
 Route::get('/deleteFaculty/{id}', [FacultyController::class, 'deleteFaculty']);
 Route::get('/editFaculty/{id}', [FacultyController::class, 'editFaculty']);
+
+Route::get('/deleteSubject/{id}', [SubjectController::class, 'deleteSubject']);
+Route::get('/editSubject/{id}', [SubjectController::class, 'editSubject']);
 
 
 Route::post('logout', [LogoutController::class, 'index']);

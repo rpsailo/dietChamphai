@@ -321,6 +321,11 @@ return [
             'icon' => 'fas fa-users',
         ],
         [
+            'text' => ' Student',
+            'url' => 'student',
+            'icon' => 'fas fa-user-circle',
+        ],
+        [
             'text' => 'change_password',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',

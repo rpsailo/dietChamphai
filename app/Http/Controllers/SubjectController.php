@@ -92,7 +92,14 @@ class SubjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $subject = Subject::find($id);
+        $subject->courseId = $request->courseId;
+        $subject->facultyId = $request->facultyId;
+        $subject->name = $request->name;
+        $subject->semester = $request->semester;
+        $subject->save();
+
+        return back()->with('success','Subject has been updated');
     }
 
     /**
@@ -104,5 +111,30 @@ class SubjectController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function deleteSubject($id)
+    {
+        $subject = Subject::find($id);
+        $subject->delete();
+        return back()->with('success', 'Subject successfully deleted');
+    }
+
+    public function editSubject($id)
+    {
+        $subject = Subject::find($id);
+        $courses = Course::all();
+        $course = Course::find($subject->courseId);
+        $faculty = Faculty::find($subject->facultyId);
+        $faculties = Faculty::all();
+        $subjects = Subject::all();
+        return view('subject.edit',
+                compact(
+                    'subject',
+                    'subjects',
+                    'course',
+                    'courses',
+                    'faculty',
+                    'faculties',
+                ));
     }
 }
