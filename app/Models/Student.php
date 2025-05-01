@@ -10,15 +10,14 @@ class Student extends Model
     use HasFactory;
     protected $fillable = [
         'courseId',
+        'academicYear',
         'name',
-        'fatherName',
-        'motherName',
-        'qualification',
+        'redgNo',
         'contact',
-        'permanentAddress',
-        'email',
-        'category',
+        'address',
         'dob',
+        'bloodGroup',
+        'idMark',
         'currentSemester',
         'status',
     ];

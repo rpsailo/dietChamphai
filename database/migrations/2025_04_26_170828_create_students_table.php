@@ -16,14 +16,13 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->foreignId('courseId');
+            $table->string('academicYear');
             $table->string('name');
-            $table->string('fatherName');
-            $table->string('motherName');
-            $table->string('qualification')->nullable();
+            $table->integer('regdNo')->nullable();
             $table->string('contact')->nullable();
-            $table->string('permanentAddress')->nullable();
-            $table->string('email')->nullable();
-            $table->string('category')->nullable();
+            $table->string('address')->nullable();
+            $table->string('bloodGroup')->nullable();
+            $table->string('idMark')->nullable();
             $table->date('dob')->nullable();
             $table->integer('currentSemester')->nullable();
             $table->integer('status')->default(0);

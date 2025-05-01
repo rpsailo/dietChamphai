@@ -24,35 +24,35 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="faculty">Faculty Name</label>
-                                <input type="text" class="form-control" name="faculty" placeholder="Enter Course Name" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="faculty" placeholder="Enter Faculty Name" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
                                 <label for="fatherName">Father's Name</label>
-                                <input type="text" class="form-control" name="fatherName" placeholder="Enter Short Name" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="fatherName" placeholder="Enter Father's Name" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
                                 <label for="motherName">Mother's Name</label>
-                                <input type="text" class="form-control" name="motherName" placeholder="Enter No. of Semester" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="motherName" placeholder="Enter Mother's Name" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
                                 <label for="contact">Contact</label>
-                                <input type="text" class="form-control" name="contact" placeholder="Enter No. of Semester" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="contact" placeholder="Enter Contact" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
                                 <label for="email">email</label>
-                                <input type="email" class="form-control" name="email" placeholder="Enter No. of Semester" autocomplete='off' autofocus='on' required>
+                                <input type="email" class="form-control" name="email" placeholder="Enter Email" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
                                 <label for="parmanentAddress">Parmanent Address</label>
-                                <input type="text" class="form-control" name="parmanentAddress" placeholder="Enter No. of Semester" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="parmanentAddress" placeholder="Enter Parmanent" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
                                 <label for="dob">Date of Birth</label>
-                                <input type="date" class="form-control" name="dob" placeholder="Enter No. of Semester" autocomplete='off' autofocus='on' required>
+                                <input type="date" class="form-control" name="dob" placeholder="Enter Date of Birth" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
                                 <label for="bloodGroup">Blood Group</label>
-                                <input type="text" class="form-control" name="bloodGroup" placeholder="Enter No. of Semester" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="bloodGroup" placeholder="Enter Blood Group" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
                                 <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> Save</button>

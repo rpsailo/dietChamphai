@@ -54,6 +54,8 @@ Route::get('/editFaculty/{id}', [FacultyController::class, 'editFaculty']);
 Route::get('/deleteSubject/{id}', [SubjectController::class, 'deleteSubject']);
 Route::get('/editSubject/{id}', [SubjectController::class, 'editSubject']);
 
+Route::get('/newStudent', [StudentController::class, 'newStudent']);
+
 
 Route::post('logout', [LogoutController::class, 'index']);
 

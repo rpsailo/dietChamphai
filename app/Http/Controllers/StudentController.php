@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Student;
+use App\Models\Course;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 class StudentController extends Controller
 {
     /**
@@ -11,9 +15,19 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        //
+       $course = Course::all();
+       $students = Student::where('status',1)->get();
+       return view('student.index',
+            compact(
+                'course',
+                'students',
+            ));
     }
 
     /**
@@ -34,7 +48,30 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $student = new Student;
+        $student->courseId = $request->courseId;
+        $student->academicYear = $request->academicYear;
+        $student->name = $request->name;
+        $student->regdNo = $request->regdNo;
+        $student->contact = $request->contact;
+        $student->address = $request->address;
+        $student->dob = $request->dob;
+        $student->bloodGroup = $request->bloodGroup;
+        $student->idMark = $request->idMark;
+        $student->currentSemester = $request->currentSemester;
+        $student->status = $request->status;
+        $student->save();
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->contact."@gmail.com";
+        $user->password = hash::make("pass");
+        $user->role = "Student";
+        $user->save();
+
+
+
+        return back()->with('success','Faculty Details successfully Added. Usename : '.$request->contact."@gmail.com"." Passowrd : pass");
     }
 
     /**
@@ -80,5 +117,10 @@ class StudentController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function newStudent(Request $request)
+    {
+        $courses = Course::all();
+        return view('student.create',compact('courses'));
     }
 }

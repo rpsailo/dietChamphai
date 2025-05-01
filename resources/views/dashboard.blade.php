@@ -12,7 +12,7 @@
     @include('layout.alert')
     <div class="container">
         <div class="row">
-
+            <img src="/vendor/adminlte/dist/img/AdminLTELogo.png" alt="Logo" width="20%">
         </div>
     </div>
 @stop

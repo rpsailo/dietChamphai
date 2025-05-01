@@ -57,14 +57,14 @@ class FacultyController extends Controller
 
         $user = new User;
         $user->name = $request->faculty;
-        $user->email = $request->faculty."@gmail.com";
+        $user->email = $request->contact."@gmail.com";
         $user->password = hash::make("pass");
         $user->role = "Faculty";
         $user->save();
 
 
 
-        return back()->with('success','Faculty Details successfully Added. Usename : '.$request->faculty."@gmail.com"." Passowrd : pass");
+        return back()->with('success','Faculty Details successfully Added. Usename : '.$request->contact."@gmail.com"." Passowrd : pass");
     }
 
     /**
