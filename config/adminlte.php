@@ -299,26 +299,43 @@ return [
     */
 
     'menu' => [
-        ['header' => 'APP SETTINGS'],
         [
-            'text' => ' User',
-            'url' => 'user',
-            'icon' => 'fas fa-user',
+            'type' => 'fullscreen-widget',
+            'topnav_right' => true,
         ],
         [
-            'text' => ' Course',
-            'url' => 'course',
-            'icon' => 'fas fa-folder',
+            'text' => ' Dashboard',
+            'url' => '/dashboard',
+            'icon' => 'fas fa-sitemap',
         ],
         [
-            'text' => ' Subject',
-            'url' => 'subject',
-            'icon' => 'fas fa-book',
+        'text' => 'Main Settings',
+        'icon' => 'fas fa-cogs',
+        'can'  => ['isReception','isAdmin'],
+        'submenu' => [
+                [
+                    'text' => ' User',
+                    'url' => 'user',
+                    'icon' => 'fas fa-user',
+                ],
+                [
+                    'text' => ' Course',
+                    'url' => 'course',
+                    'icon' => 'fas fa-folder',
+                ],
+                [
+                    'text' => ' Subject',
+                    'url' => 'subject',
+                    'icon' => 'fas fa-book',
+                ],
+            ],
         ],
+
         [
             'text' => ' Faculty',
             'url' => 'faculty',
             'icon' => 'fas fa-users',
+            'can'  => ['isFaculty','isAdmin'],
         ],
         [
             'text' => ' Student',

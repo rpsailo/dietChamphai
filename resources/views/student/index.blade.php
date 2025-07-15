@@ -26,10 +26,6 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Regd.No</th>
-                                <th>Contact</th>
-                                <th>Address</th>
-                                <th>ID Mark</th>
-                                <th>Semester</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -40,10 +36,6 @@
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $student->name }}</td>
                                 <td>{{ $student->regdNo }}</td>
-                                <td>{{ $student->contact }}</td>
-                                <td>{{ $student->address }}</td>
-                                <td>{{ $student->idMark }}</td>
-                                <td>{{ $student->currentSemester }}</td>
                                 <td>
                                     {{ $student->status }}
                                     @if($student->status == 0)
@@ -69,6 +61,7 @@
                                     {{-- Example button to open modal --}}
                                     <button type='button' class="btn btn-danger btn-sm " data-toggle="modal" data-target="#modalCustom{{ $student->id }}">Delete</button>
                                     <button type='button' class="btn btn-primary btn-sm " onclick="location.href='/editStudent/{{ $student->id }}'">Edit</button>
+                                    <button type='button' class="btn btn-warning btn-sm " onclick="location.href='/viewStudent/{{ $student->id }}'">View</button>
                                 </td>
                             </tr>
                             @endforeach
