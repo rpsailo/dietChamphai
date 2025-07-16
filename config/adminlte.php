@@ -316,17 +316,22 @@ return [
                 [
                     'text' => ' User',
                     'url' => 'user',
-                    'icon' => 'fas fa-user',
+                    'icon' => 'fa fa-arrow-right',
                 ],
                 [
                     'text' => ' Course',
                     'url' => 'course',
-                    'icon' => 'fas fa-folder',
+                    'icon' => 'fa fa-arrow-right',
                 ],
                 [
                     'text' => ' Subject',
                     'url' => 'subject',
-                    'icon' => 'fas fa-book',
+                    'icon' => 'fa fa-arrow-right',
+                ],
+                [
+                    'text' => 'Faculty Subject',
+                    'url' => 'facultySubject',
+                    'icon' => 'fa fa-arrow-right',
                 ],
             ],
         ],

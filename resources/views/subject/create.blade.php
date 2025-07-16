@@ -78,7 +78,6 @@
                         <tbody>
                             @foreach($subjects as $key=>$subject)
                             @php $course = $courses->where('id',$subject->courseId)->first() @endphp
-                            @php $faculty = $faculties->where('id',$subject->facultyId)->first() @endphp
                             <tr>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $course->name }}</td>

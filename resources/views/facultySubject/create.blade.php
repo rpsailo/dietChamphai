@@ -1,54 +1,49 @@
 @extends('adminlte::page')
 
-@section('title', 'Create New Subject')
+@section('title', 'Create Faculty Subject')
 
 @section('content_header')
-    <h1>Course</h1>
+    <h1>Faculty Subject Mapping</h1>
 @stop
 
 @section('content')
-    <p>Create New Subject</p>
+    <p>Create Faculty Subject Mapping</p>
     @include('layout.alert')
     <div class="row">
         <div class="col-md-5">
             <div class="card card-default">
                 <div class="card-header">
                     <h3 class="card-title">
-                        Create Subject
+                        Faculty Subject
                     </h3>
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action=" {{ route('subject.update', $subject->id) }}">
+                    <form method="POST" action=" {{ route('facultySubject.store') }} ">
                         @csrf
-                        <input name="_method" type="hidden" value="PATCH">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="Course">Course Name</label>
-                                <select name="courseId" id="" class="form-control" required>
-                                    <option value="{{ $course->id }}" selected>{{ $course->name }}</option>
-                                    @foreach($courses as $cou)
-                                        <option value="{{ $cou->id }}">{{ $cou->name }}</option>
+                                <label for="faculty">Faculty</label>
+                                <select name="faculty" id="" class="form-control" required>
+                                    <option value="" selected>Select Faculty</option>
+                                    @foreach($faculties as $faculty)
+                                        <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="name">Subject Name</label>
-                                <input type="text" class="form-control" name="name" value="{{ $subject->name }}" autocomplete='off' autofocus='on' required>
-                            </div>
-                            <div class="form-group">
-                                <label for="semester">Semester</label>
-                                <select name="semester" class="form-control" required>
-                                    <option value="" selected>Select Semester</option>
-                                    <option value="1">I Semster</option>
-                                    <option value="2">II Semster</option>
-                                    <option value="3">III Semster</option>
-                                    <option value="4">IV Semster</option>
-                                    <option value="5">V Semster</option>
-                                    <option value="6">VI Semster</option>
+                                <label for="subject">Subject</label>
+                                <select name="subject" id="" class="form-control" required>
+                                    <option value="" selected>Select Faculty</option>
+                                    @foreach($subjects as $subject)
+                                        <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
+
                             <div class="form-group">
+                                <input type="hidden" name="semester" value="{{ $semester }}">
+                                <input type="hidden" name="courseId" value="{{ $courseId }}">
                                 <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> Save</button>
                             </div>
                         </div>
@@ -70,34 +65,32 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Course Name</th>
-                                <th>Faculty Name</th>
-                                <th>Subject Name</th>
+                                <th>Subject</th>
+                                <th>Faculty</th>
                                 <th>Semester</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($subjects as $key=>$subject)
-                            @php $course = $courses->where('id',$subject->courseId)->first() @endphp
+                            @foreach($facultySubjects as $key=>$facultySubject)
                             <tr>
                                 <td>{{ $key+1 }}</td>
-                                <td>{{ $course->name }}</td>
-                                <td>{{ $subject->name }}</td>
-                                <td>{{ $subject->semester }} Semester</td>
+                                <td>{{ $facultySubject->subjectName }}</td>
+                                <td>{{ $facultySubject->facultyName }}</td>
+                                <td>{{ $facultySubject->semesterId }} Semester</td>
                                 <td>
                                     {{-- Custom --}}
                                     <x-adminlte-modal id="modalCustom{{ $subject->id }}" title="Delete Warning" size="lg" theme="teal"
                                     icon="fas fa-bell" v-centered>
-                                    <div style="height:100px;">Subject Delete Remove all ralated Data</div>
+                                    <div style="height:100px;">Are You Sure</div>
                                     <x-slot name="footerSlot">
-                                        <x-adminlte-button class="mr-auto" onclick="location.href='/deleteSubject/{{ $subject->id }}'" theme="success" label="Yes"/>
+                                        <x-adminlte-button class="mr-auto" onclick="location.href='/deleteFacultySubject/{{ $subject->id }}'" theme="success" label="Yes"/>
                                         <x-adminlte-button theme="danger" label="No" data-dismiss="modal"/>
                                     </x-slot>
                                     </x-adminlte-modal>
                                     {{-- Example button to open modal --}}
-                                    <button type='button' class="btn btn-danger btn-sm " data-toggle="modal" data-target="#modalCustom{{ $subject->id }}">Delete</button>
-                                    <button type='button' class="btn btn-primary btn-sm " onclick="location.href='/editSubject/{{ $subject->id }}'">Edit</button>
+                                    <button type='button' class="btn btn-danger btn-sm " data-toggle="modal" data-target="#modalCustom{{ $facultySubject->id }}">Delete</button>
+                                    <button type='button' class="btn btn-primary btn-sm " onclick="location.href='/editFacultySubject/{{ $facultySubject->id }}'">Edit</button>
                                 </td>
                             </tr>
                             @endforeach
