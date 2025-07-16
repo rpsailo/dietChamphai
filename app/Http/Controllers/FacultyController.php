@@ -23,7 +23,8 @@ class FacultyController extends Controller
     public function index()
     {
         $faculties = Faculty::all();
-        return view('faculty.create',compact('faculties'));
+        $users = User::all();
+        return view('faculty.create',compact('faculties','users'));
     }
 
     /**
@@ -47,6 +48,7 @@ class FacultyController extends Controller
         //dd($request->all());
         $faculty = new Faculty;
         $faculty->name = $request->faculty;
+        $faculty->designation = $request->designation;
         $faculty->fatherName = $request->fatherName;
         $faculty->motherName = $request->motherName;
         $faculty->contact = $request->contact;
@@ -55,12 +57,22 @@ class FacultyController extends Controller
         $faculty->bloodGroup = $request->bloodGroup;
         $faculty->save();
 
+        $email = $request->username."@champhaidiet.in";
+
         $user = new User;
         $user->name = $request->faculty;
-        $user->email = $request->contact."@gmail.com";
+        $user->email = $request->username."@champhaidiet.in";
         $user->password = hash::make("pass");
         $user->role = "Faculty";
         $user->save();
+
+        $userId = User::where('email',$email)->first();
+        if($userId)
+        {
+            $faculty = Faculty::where('id','>=',1)->orderBy('id','DESC')->first();
+            $faculty->userId = $userId->id;
+            $faculty->save();
+        }
 
 
 
@@ -108,7 +120,7 @@ class FacultyController extends Controller
         $faculty->bloodGroup = $request->bloodGroup;
         $faculty->save();
 
-        return back()->with('success','Faculty info updated successfully');
+        return redirect('/faculty')->with('success','Faculty info updated successfully');
     }
 
     /**
@@ -132,6 +144,7 @@ class FacultyController extends Controller
     {
         $faculty = Faculty::find($id);
         $faculties = Faculty::all();
-        return view('faculty.edit', compact('faculty','faculties'));
+        $users = User::all();
+        return view('faculty.edit', compact('faculty','faculties','users'));
     }
 }

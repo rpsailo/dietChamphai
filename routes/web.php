@@ -36,6 +36,8 @@ Route::resource('subject', SubjectController::class);
 Route::resource('faculty', FacultyController::class);
 Route::resource('student', StudentController::class);
 
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+
 Route::get('/editUser/{id}', [UserController::class, 'editUser']);
 Route::get('/deleteUser/{id}', [UserController::class, 'deleteUser']);
 

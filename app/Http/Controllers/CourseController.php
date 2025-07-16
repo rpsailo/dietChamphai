@@ -86,7 +86,7 @@ class CourseController extends Controller
         $course->semester = $request->semester;
         $course->save();
 
-        return back()->with('success','Course info updated successfully');
+        return redirect('/course')->with('success','Course info updated successfully');
     }
 
     /**

@@ -3,7 +3,7 @@
 @section('title', 'Create New Subject')
 
 @section('content_header')
-    <h1>Course</h1>
+    <h1>Subject</h1>
 @stop
 
 @section('content')
@@ -46,7 +46,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="semester">Semester</label>
-                                <input type="text" name="semester" class="form-control" autocomplete="off" required>
+                                <select name="semester" class="form-control" required>
+                                    <option value="" selected>Select Semester</option>
+                                    <option value="I Semster">I Semster</option>
+                                    <option value="II Semster">II Semster</option>
+                                    <option value="III Semster">III Semster</option>
+                                    <option value="IV Semster">IV Semster</option>
+                                    <option value="V Semster">V Semster</option>
+                                    <option value="VI Semster">VI Semster</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> Save</button>

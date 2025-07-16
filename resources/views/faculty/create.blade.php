@@ -27,32 +27,40 @@
                                 <input type="text" class="form-control" name="faculty" placeholder="Enter Faculty Name" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
+                                <label for="designation">Designation</label>
+                                <input type="text" class="form-control" name="designation" placeholder="Enter Designation" autocomplete='off' autofocus='on' required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userName">Username</label>
+                                <input type="text" class="form-control" name="username" placeholder="Enter User Name" autocomplete='off' autofocus='on' required>
+                            </div>
+                            <div class="form-group">
                                 <label for="fatherName">Father's Name</label>
-                                <input type="text" class="form-control" name="fatherName" placeholder="Enter Father's Name" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="fatherName" placeholder="Enter Father's Name" autocomplete='off' autofocus='on'>
                             </div>
                             <div class="form-group">
                                 <label for="motherName">Mother's Name</label>
-                                <input type="text" class="form-control" name="motherName" placeholder="Enter Mother's Name" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="motherName" placeholder="Enter Mother's Name" autocomplete='off' autofocus='on'>
                             </div>
                             <div class="form-group">
                                 <label for="contact">Contact</label>
-                                <input type="text" class="form-control" name="contact" placeholder="Enter Contact" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="contact" placeholder="Enter Contact" autocomplete='off' autofocus='on'>
                             </div>
                             <div class="form-group">
                                 <label for="email">email</label>
-                                <input type="email" class="form-control" name="email" placeholder="Enter Email" autocomplete='off' autofocus='on' required>
+                                <input type="email" class="form-control" name="email" placeholder="Enter Email" autocomplete='off' autofocus='on'>
                             </div>
                             <div class="form-group">
                                 <label for="parmanentAddress">Parmanent Address</label>
-                                <input type="text" class="form-control" name="parmanentAddress" placeholder="Enter Parmanent" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="parmanentAddress" placeholder="Enter Parmanent" autocomplete='off' autofocus='on'>
                             </div>
                             <div class="form-group">
                                 <label for="dob">Date of Birth</label>
-                                <input type="date" class="form-control" name="dob" placeholder="Enter Date of Birth" autocomplete='off' autofocus='on' required>
+                                <input type="date" class="form-control" name="dob" placeholder="Enter Date of Birth" autocomplete='off' autofocus='on'>
                             </div>
                             <div class="form-group">
                                 <label for="bloodGroup">Blood Group</label>
-                                <input type="text" class="form-control" name="bloodGroup" placeholder="Enter Blood Group" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="bloodGroup" placeholder="Enter Blood Group" autocomplete='off' autofocus='on'>
                             </div>
                             <div class="form-group">
                                 <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> Save</button>
@@ -101,6 +109,61 @@
                                     {{-- Example button to open modal --}}
                                     <button type='button' class="btn btn-danger btn-sm " data-toggle="modal" data-target="#modalCustom{{ $faculty->id }}">Delete</button>
                                     <button type='button' class="btn btn-primary btn-sm " onclick="location.href='/editFaculty/{{ $faculty->id }}'">Edit</button>
+
+                                    <x-adminlte-modal id="view{{ $faculty->id }}" title="Faculty Details" size="lg" theme="teal"
+                                        icon="fas fa-bell" v-centered static-backdrop scrollable>
+                                        <div>
+                                            @php
+                                                $fac = $faculties->where('id',$faculty->id)->first();
+                                                $user = $users->where('id',$fac->userId)->first();
+                                            @endphp
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>{{ $fac->name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Designation</td>
+                                                        <td>{{ $fac->designation }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>login email</td>
+                                                        <td>{{ $user->email }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Father's Name</td>
+                                                        <td>{{ $fac->fatherName }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Mother's Name</td>
+                                                        <td>{{ $fac->motherName }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Contact</td>
+                                                        <td>{{ $fac->contact }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Permanent Address</td>
+                                                        <td>{{ $fac->permanentAddress }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Date of Birth</td>
+                                                        <td>{{ $fac->dob }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Blood Group</td>
+                                                        <td>{{ $fac->bloodGroup }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                        <x-slot name="footerSlot">
+                                        </x-slot>
+                                    </x-adminlte-modal>
+                                    {{-- Example button to open modal --}}
+                                    <button type='button' class="btn btn-success btn-sm " data-toggle="modal" data-target="#view{{ $faculty->id }}">View</button>
                                 </td>
                             </tr>
                             @endforeach

@@ -28,28 +28,32 @@
                                 <input type="text" class="form-control" name="name" value="{{ $faculty->name }}" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
+                                <label for="designation">Designation</label>
+                                <input type="text" class="form-control" name="designation" value="{{ $faculty->designation }}" autocomplete='off' autofocus='on' required>
+                            </div>
+                            <div class="form-group">
                                 <label for="fatherName">Father's Name</label>
-                                <input type="text" class="form-control" name="fatherName" value="{{ $faculty->fatherName }}" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="fatherName" value="{{ $faculty->fatherName }}" autocomplete='off' autofocus='on'>
                             </div>
                             <div class="form-group">
                                 <label for="motherName">Mother's Name</label>
-                                <input type="text" class="form-control" name="motherName" value="{{ $faculty->motherName }}" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="motherName" value="{{ $faculty->motherName }}" autocomplete='off' autofocus='on'>
                             </div>
                             <div class="form-group">
                                 <label for="contact">Contact</label>
-                                <input type="text" class="form-control" name="contact" value="{{ $faculty->contact }}" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="contact" value="{{ $faculty->contact }}" autocomplete='off' autofocus='on'>
                             </div>
                             <div class="form-group">
                                 <label for="permanentAddress">Permanent Address</label>
-                                <input type="text" class="form-control" name="permanentAddress" value="{{ $faculty->permanentAddress }}" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="permanentAddress" value="{{ $faculty->permanentAddress }}" autocomplete='off' autofocus='on'>
                             </div>
                             <div class="form-group">
                                 <label for="dob">Date of Birth</label>
-                                <input type="date" class="form-control" name="dob" value="{{ $faculty->dob }}" autocomplete='off' autofocus='on' required>
+                                <input type="date" class="form-control" name="dob" value="{{ $faculty->dob }}" autocomplete='off' autofocus='on'>
                             </div>
                             <div class="form-group">
                                 <label for="bloodGroup">Blood Group</label>
-                                <input type="text" class="form-control" name="bloodGroup" value="{{ $faculty->bloodGroup }}" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="bloodGroup" value="{{ $faculty->bloodGroup }}" autocomplete='off' autofocus='on'>
                             </div>
 
                             <div class="form-group">
@@ -99,6 +103,61 @@
                                     {{-- Example button to open modal --}}
                                     <button type='button' class="btn btn-danger btn-sm " data-toggle="modal" data-target="#modalCustom{{ $faculty->id }}">Delete</button>
                                     <button type='button' class="btn btn-primary btn-sm " onclick="location.href='/editFaculty/{{ $faculty->id }}'">Edit</button>
+
+                                    <x-adminlte-modal id="view{{ $faculty->id }}" title="Faculty Details" size="lg" theme="teal"
+                                        icon="fas fa-bell" v-centered static-backdrop scrollable>
+                                        <div>
+                                            @php
+                                                $fac = $faculties->where('id',$faculty->id)->first();
+                                                $user = $users->where('id',$fac->userId)->first();
+                                            @endphp
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>{{ $fac->name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Designation</td>
+                                                        <td>{{ $fac->designation }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>login email</td>
+                                                        <td>{{ $user->email }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Father's Name</td>
+                                                        <td>{{ $fac->fatherName }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Mother's Name</td>
+                                                        <td>{{ $fac->motherName }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Contact</td>
+                                                        <td>{{ $fac->contact }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Permanent Address</td>
+                                                        <td>{{ $fac->permanentAddress }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Date of Birth</td>
+                                                        <td>{{ $fac->dob }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Blood Group</td>
+                                                        <td>{{ $fac->bloodGroup }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                        <x-slot name="footerSlot">
+                                        </x-slot>
+                                    </x-adminlte-modal>
+                                    {{-- Example button to open modal --}}
+                                    <button type='button' class="btn btn-success btn-sm " data-toggle="modal" data-target="#view{{ $faculty->id }}">View</button>
                                 </td>
                             </tr>
                             @endforeach
