@@ -32,15 +32,6 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="faculty">Faculty</label>
-                                <select name="facultyId" id="" class="form-control" required>
-                                    <option value="" selected>Select Faculty</option>
-                                    @foreach($faculties as $faculty)
-                                        <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
                                 <label for="name">Subject Name</label>
                                 <input type="text" class="form-control" name="name" placeholder="Enter Short Name" autocomplete='off' autofocus='on' required>
                             </div>
@@ -48,12 +39,12 @@
                                 <label for="semester">Semester</label>
                                 <select name="semester" class="form-control" required>
                                     <option value="" selected>Select Semester</option>
-                                    <option value="I Semster">I Semster</option>
-                                    <option value="II Semster">II Semster</option>
-                                    <option value="III Semster">III Semster</option>
-                                    <option value="IV Semster">IV Semster</option>
-                                    <option value="V Semster">V Semster</option>
-                                    <option value="VI Semster">VI Semster</option>
+                                    <option value="1">I Semster</option>
+                                    <option value="2">II Semster</option>
+                                    <option value="3">III Semster</option>
+                                    <option value="4">IV Semster</option>
+                                    <option value="5">V Semster</option>
+                                    <option value="6">VI Semster</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -79,7 +70,6 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Course Name</th>
-                                <th>Faculty Name</th>
                                 <th>Subject Name</th>
                                 <th>Semester</th>
                                 <th>Action</th>
@@ -92,9 +82,8 @@
                             <tr>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $course->name }}</td>
-                                <td>{{ $faculty->name }}</td>
                                 <td>{{ $subject->name }}</td>
-                                <td>{{ $subject->semester }}</td>
+                                <td>{{ $subject->semester }} Semester</td>
                                 <td>
                                     {{-- Custom --}}
                                     <x-adminlte-modal id="modalCustom{{ $subject->id }}" title="Delete Warning" size="lg" theme="teal"

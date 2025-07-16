@@ -33,21 +33,20 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="faculty">Faculty</label>
-                                <select name="facultyId" id="" class="form-control" required>
-                                    <option value="{{ $faculty->id }}" selected>{{ $faculty->name }}</option>
-                                    @foreach($faculties as $fa)
-                                        <option value="{{ $fa->id }}">{{ $fa->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
                                 <label for="name">Subject Name</label>
                                 <input type="text" class="form-control" name="name" value="{{ $subject->name }}" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
                                 <label for="semester">Semester</label>
-                                <input type="text" name="semester" class="form-control" value="{{ $subject->semester }}" autocomplete="off" required>
+                                <select name="semester" class="form-control" required>
+                                    <option value="" selected>Select Semester</option>
+                                    <option value="1">I Semster</option>
+                                    <option value="2">II Semster</option>
+                                    <option value="3">III Semster</option>
+                                    <option value="4">IV Semster</option>
+                                    <option value="5">V Semster</option>
+                                    <option value="6">VI Semster</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> Save</button>
@@ -85,9 +84,8 @@
                             <tr>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $course->name }}</td>
-                                <td>{{ $faculty->name }}</td>
                                 <td>{{ $subject->name }}</td>
-                                <td>{{ $subject->semester }}</td>
+                                <td>{{ $subject->semester }} Semester</td>
                                 <td>
                                     {{-- Custom --}}
                                     <x-adminlte-modal id="modalCustom{{ $subject->id }}" title="Delete Warning" size="lg" theme="teal"

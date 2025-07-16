@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Subject;
 use App\Models\Course;
-use App\Models\Faculty;
 
-use Illuminate\Support\Facades\Auth;
 
 class SubjectController extends Controller
 {
@@ -23,13 +21,11 @@ class SubjectController extends Controller
     public function index()
     {
         $courses = Course::all();
-        $faculties = Faculty::all();
-        $subjects = Subject::where('facultyId',Auth::user()->id)->get();
+        $subjects = Subject::all();
         return view('subject.create',
             compact(
                 'subjects',
                 'courses',
-                'faculties',
             ));
     }
 
@@ -53,7 +49,6 @@ class SubjectController extends Controller
     {
         $subject = new Subject;
         $subject->courseId = $request->courseId;
-        $subject->facultyId = $request->facultyId;
         $subject->name = $request->name;
         $subject->semester = $request->semester;
         $subject->save();
@@ -94,7 +89,6 @@ class SubjectController extends Controller
     {
         $subject = Subject::find($id);
         $subject->courseId = $request->courseId;
-        $subject->facultyId = $request->facultyId;
         $subject->name = $request->name;
         $subject->semester = $request->semester;
         $subject->save();
@@ -124,8 +118,6 @@ class SubjectController extends Controller
         $subject = Subject::find($id);
         $courses = Course::all();
         $course = Course::find($subject->courseId);
-        $faculty = Faculty::find($subject->facultyId);
-        $faculties = Faculty::all();
         $subjects = Subject::all();
         return view('subject.edit',
                 compact(
@@ -133,8 +125,6 @@ class SubjectController extends Controller
                     'subjects',
                     'course',
                     'courses',
-                    'faculty',
-                    'faculties',
                 ));
     }
 }
