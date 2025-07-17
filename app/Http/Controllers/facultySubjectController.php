@@ -95,6 +95,7 @@ class facultySubjectController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $faculty = Faculty::find($request->faculty);
         $subject = Subject::find($request->subject);
         $facultySubject = Facultysubject::find($id);

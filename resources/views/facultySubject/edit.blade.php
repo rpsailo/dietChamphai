@@ -21,6 +21,7 @@
                 <div class="card-body">
                     <form method="POST" action=" {{ route('facultySubject.update', $facultySubject->id) }} ">
                         @csrf
+                        <input name="_method" type="hidden" value="PATCH">
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="faculty">Faculty</label>

@@ -343,6 +343,12 @@ return [
             'can'  => ['isFaculty','isAdmin'],
         ],
         [
+            'text' => ' Mark Attendance',
+            'url' => 'attendance',
+            'icon' => 'fa fa-check-square',
+            'can'  => ['isFaculty','isAdmin'],
+        ],
+        [
             'text' => ' Student',
             'url' => 'student',
             'icon' => 'fas fa-user-circle',
