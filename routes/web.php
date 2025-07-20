@@ -62,6 +62,7 @@ Route::get('/deleteSubject/{id}', [SubjectController::class, 'deleteSubject']);
 Route::get('/editSubject/{id}', [SubjectController::class, 'editSubject']);
 
 Route::get('/newStudent', [StudentController::class, 'newStudent']);
+Route::get('/studentGenPass', [StudentController::class, 'studentGenPass']);
 
 
 Route::post('logout', [LogoutController::class, 'index']);
@@ -71,4 +72,8 @@ Route::get('/deleteFacultySubject/{id}', [FacultysubjectController::class, 'dele
 Route::get('/editFacultySubject/{id}', [FacultysubjectController::class, 'editFacultySubject']);
 
 Route::get('/markAttendance/{id}', [AttendanceController::class, 'markAttendance']);
+Route::get('/updateAttendance', [AttendanceController::class, 'updateAttendance']);
+Route::get('/updateEditAttendance', [AttendanceController::class, 'updateEditAttendance']);
+Route::get('/editAttendance', [AttendanceController::class, 'editAttendance']);
+Route::get('/viewAttendance', [AttendanceController::class, 'viewAttendance']);
 

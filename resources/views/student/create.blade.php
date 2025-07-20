@@ -40,8 +40,12 @@
                                 <input type="text" class="form-control" name="name" placeholder="Enter Student Name" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
-                                <label for="regdNo">MBSE Redg.No</label>
-                                <input type="text" class="form-control" name="regdNo" placeholder="Enter MBSE Regd.No" autocomplete='off' autofocus='on' required>
+                                <label for="classRollNo">class Roll No</label>
+                                <input type="text" class="form-control" name="classRollNo" placeholder="Enter Class Roll No" autocomplete='off' autofocus='on' required>
+                            </div>
+                            <div class="form-group">
+                                <label for="boardRollNo">Board Roll No</label>
+                                <input type="text" class="form-control" name="boardRollNo" placeholder="Enter Board Roll No" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
                                 <label for="contact">Contact</label>
@@ -61,11 +65,20 @@
                             </div>
                             <div class="form-group">
                                 <label for="idMark">ID Mark</label>
-                                <input type="text" class="form-control" name="idMark" placeholder="Enter Blood Group" autocomplete='off' autofocus='on' required>
+                                <input type="text" class="form-control" name="idMark" placeholder="Enter ID Mark" autocomplete='off' autofocus='on' required>
                             </div>
                             <div class="form-group">
                                 <label for="currentSemester">Current Semester</label>
                                 <input type="text" class="form-control" name="currentSemester" placeholder="Enter Current Semester" autocomplete='off' autofocus='on' required>
+                                <select name="currentSemester" class="form-control" required>
+                                    <option value="" selected>Select Semester</option>
+                                    <option value="1">1 Semester</option>
+                                    <option value="2">2 Semester</option>
+                                    <option value="3">3 Semester</option>
+                                    <option value="4">4 Semester</option>
+                                    <option value="5">5 Semester</option>
+                                    <option value="6">6 Semester</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="status">Student Status</label>

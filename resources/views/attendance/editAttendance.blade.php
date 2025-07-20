@@ -3,7 +3,7 @@
 @section('title', 'Mark Attendance')
 
 @section('content_header')
-    <h1>Mark Attendance</h1>
+    <h1>Edit Mark Attendance</h1>
 @stop
 
 @section('content')
@@ -19,14 +19,15 @@
 
                 <div class="card-body">
                     <strong>
-                    Date : {{ date('d-m-Y') }} <br>
+                    Date : {{ $date }} <br>
                     Subject : {{ $subject->name }} <br>
-                    Semester : {{ $subject->semester }} Sem<br>
+                    Semester : {{ $subject->semester }} Semester <br>
                     Faculty : {{ $faculty->name }} <br>
                     </strong>
                     <hr>
-                    <form method="POST" action=" {{ route('attendance.store') }} ">
+                    <form method="GET" action=" /updateEditAttendance ">
                         @csrf
+                        <input name="_method" type="hidden" value="PATCH">
                         <div class="card-body">
                             <table width="100%" border="1" cellspacing="2" cellpadding="2">
                                 <thead>
@@ -39,11 +40,26 @@
                                 </thead>
                                 <tbody>
                                     @foreach($students as $student)
+                                    @php $attend = $attendance->where('studentId',$student->id)->first() @endphp
                                     <tr>
                                         <td>{{ $student->classRollNo }}</td>
                                         <td>{{ $student->name }}</td>
-                                        <td><input class="custom-control" type="checkbox" name="attendance{{ $student->id }}"  ></td>
-                                        <td><input class="custom-control" type="checkbox" name="leave{{ $student->id }}"  ></td>
+                                        @if($attend->count())
+                                            @if($attend->mark != null)
+                                                <td><input class="custom-control" type="checkbox" name="attendance{{ $student->id }}"  checked></td>
+                                            @else
+                                                <td><input class="custom-control" type="checkbox" name="attendance{{ $student->id }}"  ></td>
+                                            @endif
+
+                                            @if($attend->leave != null)
+                                                <td><input class="custom-control" type="checkbox" name="leave{{ $student->id }}"  checked ></td>
+                                            @else
+                                                <td><input class="custom-control" type="checkbox" name="leave{{ $student->id }}"  ></td>
+                                            @endif
+                                        @else
+                                                <td><input class="custom-control" type="checkbox" name="attendance{{ $student->id }}"  ></td>
+                                                <td><input class="custom-control" type="checkbox" name="leave{{ $student->id }}"  ></td>
+                                        @endif
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -53,6 +69,7 @@
                             <div class="form-group">
                                 <input type="hidden" name="subjectId" value="{{ $subject->id }}">
                                 <input type="hidden" name="userId" value="{{ Auth::user()->id }}">
+                                <input type="hidden" name="date" value="{{ $date }}">
                                 <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> Save</button>
                             </div>
                         </div>

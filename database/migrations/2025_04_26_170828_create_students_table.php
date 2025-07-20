@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->foreignId('courseId');
+            $table->integer('boardRollNo')->nullable();
+            $table->integer('classRollNo')->nullable();
             $table->string('academicYear');
             $table->string('name');
-            $table->integer('regdNo')->nullable();
             $table->string('contact')->nullable();
             $table->string('address')->nullable();
             $table->string('bloodGroup')->nullable();

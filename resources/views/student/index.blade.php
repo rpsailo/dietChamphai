@@ -25,7 +25,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Regd.No</th>
+                                <th>Board Roll.No</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -35,9 +35,9 @@
                             <tr>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $student->name }}</td>
-                                <td>{{ $student->regdNo }}</td>
+                                <td>{{ $student->boardRollNo }}</td>
                                 <td>
-                                    {{ $student->status }}
+
                                     @if($student->status == 0)
                                         In-Active
                                     @elseif($student->status == 1)

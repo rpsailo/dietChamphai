@@ -3,13 +3,13 @@
 @section('title', 'Mark Attendance')
 
 @section('content_header')
-    <h1>Mark Attendance</h1>
+    <h1>View Attendance for the month of {{ date('M') }}</h1>
 @stop
 
 @section('content')
     @include('layout.alert')
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card card-default">
                 <div class="card-header">
                     <h3 class="card-title">
@@ -19,42 +19,44 @@
 
                 <div class="card-body">
                     <strong>
-                    Date : {{ date('d-m-Y') }} <br>
+                    Date : {{ date('M') }} <br>
                     Subject : {{ $subject->name }} <br>
-                    Semester : {{ $subject->semester }} Sem<br>
+                    Semester : {{ $subject->semester }} Sem <br>
                     Faculty : {{ $faculty->name }} <br>
                     </strong>
                     <hr>
-                    <form method="POST" action=" {{ route('attendance.store') }} ">
+                    <form method="GET" action=" /updateAttendance ">
                         @csrf
+                        <input name="_method" type="hidden" value="PATCH">
                         <div class="card-body">
                             <table width="100%" border="1" cellspacing="2" cellpadding="2">
                                 <thead>
                                     <tr>
                                         <th>Roll No</th>
                                         <th>Student</th>
-                                        <th>Attendance</th>
-                                        <th>Leave</th>
+                                        <th>No. of Class</th>
+                                        <th>No. of Present</th>
+                                        <th>No. of Leave</th>
+                                        <th>Parcentage</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($students as $student)
+                                    @php $attend = $attendance->where('studentId',$student->id) @endphp
+                                    @php $numClass = $attend->count('mark') @endphp
+                                    @php $numPresent = $attend->sum('mark') @endphp
+                                    @php $numLeave = $attend->sum('leave') @endphp
                                     <tr>
                                         <td>{{ $student->classRollNo }}</td>
-                                        <td>{{ $student->name }}</td>
-                                        <td><input class="custom-control" type="checkbox" name="attendance{{ $student->id }}"  ></td>
-                                        <td><input class="custom-control" type="checkbox" name="leave{{ $student->id }}"  ></td>
+                                        <td>{{ $student->name}}</td>
+                                        <td align="center">{{ $numClass }}</td>
+                                        <td align="center">{{ $numPresent }}</td>
+                                        <td align="center">{{ $numLeave }}</td>
+                                        <td align="center">{{ ($numPresent * 100) / $numClass }} %</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
-
                             </table>
-                            <br>
-                            <div class="form-group">
-                                <input type="hidden" name="subjectId" value="{{ $subject->id }}">
-                                <input type="hidden" name="userId" value="{{ Auth::user()->id }}">
-                                <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> Save</button>
-                            </div>
                         </div>
                     </form>
                 </div>

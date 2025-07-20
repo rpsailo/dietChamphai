@@ -52,7 +52,8 @@ class StudentController extends Controller
         $student->courseId = $request->courseId;
         $student->academicYear = $request->academicYear;
         $student->name = $request->name;
-        $student->regdNo = $request->regdNo;
+        $student->boardRollNo = $request->boardRollNo;
+        $student->classRollNo = $request->classRollNo;
         $student->contact = $request->contact;
         $student->address = $request->address;
         $student->dob = $request->dob;
@@ -122,5 +123,20 @@ class StudentController extends Controller
     {
         $courses = Course::all();
         return view('student.create',compact('courses'));
+    }
+
+    public function studentGenPass()
+    {
+        $students = Student::all();
+        foreach($students as $student)
+        {
+            $user = new User;
+            $user->name = $student->name;
+            $user->email = $student->classRollNo.$student->academicYear."@champhaidiet.in";
+            $user->password = hash::make("pass");
+            $user->role = "Student";
+            $user->save();
+        }
+
     }
 }
