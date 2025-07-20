@@ -139,4 +139,15 @@ class StudentController extends Controller
         }
 
     }
+    public function studentGenUserId()
+    {
+        $users = User::where('role','Student')->get();
+        foreach($users as $user)
+        {
+            $student = Student::where('name',$user->name)->first();
+            $student->userId = $user->id;
+            $student->save();
+
+        }
+    }
 }

@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Student;
+use App\Models\Subject;
+use App\Models\Attendance;
+use App\Models\Faculty;
+use App\Models\Facultysubject;
+
 
 class DashboardController extends Controller
 {
@@ -17,6 +24,45 @@ class DashboardController extends Controller
     }
     public function index()
     {
+        if(Auth::user()->role == 'Student')
+        {
+            $student = Student::where('userId',Auth::user()->id)->first();
+            $subjects = Subject::where('semester',$student->currentSemester)
+                ->where('courseId',$student->courseId)
+                ->get();
+            $faculties = Faculty::all();
+            $facultySubjects = Facultysubject::where('semesterId',$student->currentSemester)
+                ->where('courseId',$student->courseId)
+                ->get();
+            $attendances = Attendance::where('courseId',$student->courseId)
+                ->where('semester',$student->currentSemester)
+                ->where('studentId',$student->id)
+                ->whereMonth('date',date('m'))
+                ->whereYear('date',date('Y'))
+                ->get();
+            /* $attendances = Attendance::where('courseId',$subject->courseId)
+            ->where('facultyId',$faculty->id)
+            ->where('subjectId',$subject->id)
+            ->where('semester',$student->currentSemester)
+            ->whereMonth('date',date('m'))
+            ->whereYear('date',date('Y'))
+            ->get(); */
+
+            return view('dashboard',
+                compact(
+                    'student',
+                    'subjects',
+                    'faculties',
+                    'attendances',
+                    'facultySubjects',
+                    )
+            );
+        }
+        else
+        {
+            $facultySubjects = null;
+            $student = null;
+        }
         return view('dashboard');
     }
 

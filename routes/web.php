@@ -67,6 +67,7 @@ Route::get('/editSubject/{id}', [SubjectController::class, 'editSubject']);
 
 Route::get('/newStudent', [StudentController::class, 'newStudent']);
 Route::get('/studentGenPass', [StudentController::class, 'studentGenPass']);
+Route::get('/studentGenUserId', [StudentController::class, 'studentGenUserId']);
 
 
 Route::post('logout', [LogoutController::class, 'index']);

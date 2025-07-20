@@ -340,13 +340,25 @@ return [
             'text' => ' Faculty',
             'url' => 'faculty',
             'icon' => 'fas fa-users',
-            'can'  => ['isFaculty','isAdmin'],
+            'can'  => ['isAdmin'],
         ],
         [
             'text' => ' Mark Attendance',
             'url' => 'attendance',
             'icon' => 'fa fa-check-square',
-            'can'  => ['isFaculty','isAdmin'],
+            'can'  => ['isFaculty'],
+        ],
+        [
+            'text' => 'Internal Mark',
+            'url' => '#',
+            'icon' => 'fa fa-check-square',
+            'can'  => ['isFaculty'],
+        ],
+        [
+            'text' => 'Semester Mark',
+            'url' => '#',
+            'icon' => 'fa fa-check-square',
+            'can'  => ['isAdmin'],
         ],
         [
             'text' => ' Student',
