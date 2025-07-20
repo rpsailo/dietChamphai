@@ -12,7 +12,8 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\FacultysubjectController;
 use App\Http\Controllers\AttendanceController;
-use App\Models\Attendance;
+use App\Http\Controllers\changePasswordController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,9 @@ Route::resource('faculty', FacultyController::class);
 Route::resource('student', StudentController::class);
 Route::resource('facultySubject', FacultysubjectController::class);
 Route::resource('attendance', AttendanceController::class);
+Route::resource('changePassword', changePasswordController::class);
+
+Route::post('/validate-password', [changePasswordController::class, 'validatePassword'])->name('validate.password');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 
@@ -76,4 +80,5 @@ Route::get('/updateAttendance', [AttendanceController::class, 'updateAttendance'
 Route::get('/updateEditAttendance', [AttendanceController::class, 'updateEditAttendance']);
 Route::get('/editAttendance', [AttendanceController::class, 'editAttendance']);
 Route::get('/viewAttendance', [AttendanceController::class, 'viewAttendance']);
+Route::get('/viewAttendanceMonth', [AttendanceController::class, 'viewAttendanceMonth']);
 

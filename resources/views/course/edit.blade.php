@@ -40,7 +40,7 @@
                                 <button type='submit' class='btn btn-success'><i class='fa fa-save'></i> Update</button>
                             </div>
                         </div>
-
+                    </form>
                 </div>
             </div>
         </div>

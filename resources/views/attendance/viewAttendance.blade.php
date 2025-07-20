@@ -25,40 +25,49 @@
                     Faculty : {{ $faculty->name }} <br>
                     </strong>
                     <hr>
-                    <form method="GET" action=" /updateAttendance ">
+                    <form method="GET" action=" /viewAttendanceMonth ">
                         @csrf
                         <input name="_method" type="hidden" value="PATCH">
-                        <div class="card-body">
-                            <table width="100%" border="1" cellspacing="2" cellpadding="2">
-                                <thead>
-                                    <tr>
-                                        <th>Roll No</th>
-                                        <th>Student</th>
-                                        <th>No. of Class</th>
-                                        <th>No. of Present</th>
-                                        <th>No. of Leave</th>
-                                        <th>Parcentage</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($students as $student)
-                                    @php $attend = $attendance->where('studentId',$student->id) @endphp
-                                    @php $numClass = $attend->count('mark') @endphp
-                                    @php $numPresent = $attend->sum('mark') @endphp
-                                    @php $numLeave = $attend->sum('leave') @endphp
-                                    <tr>
-                                        <td>{{ $student->classRollNo }}</td>
-                                        <td>{{ $student->name}}</td>
-                                        <td align="center">{{ $numClass }}</td>
-                                        <td align="center">{{ $numPresent }}</td>
-                                        <td align="center">{{ $numLeave }}</td>
-                                        <td align="center">{{ ($numPresent * 100) / $numClass }} %</td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                        <div class="form-group col-sm-2">
+                            <label for="search">Search Month</label>
+                            <input type="month" class="form-control" name="month" autocomplete='off' autofocus='on' required>
+                        </div>
+                        <div class="form-group">
+                            <label for="search"></label>
+                            <input type="hidden" name="subjectId" value="{{ $subject->id }}">
+                            <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-search"></i> Search</button>
                         </div>
                     </form>
+                    <div class="card-body">
+                        <table width="100%" border="1" cellspacing="2" cellpadding="2">
+                            <thead>
+                                <tr>
+                                    <th>Roll No</th>
+                                    <th>Student</th>
+                                    <th>No. of Class</th>
+                                    <th>No. of Present</th>
+                                    <th>No. of Leave</th>
+                                    <th>Parcentage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($students as $student)
+                                @php $attend = $attendance->where('studentId',$student->id) @endphp
+                                @php $numClass = $attend->count('mark') @endphp
+                                @php $numPresent = $attend->sum('mark') @endphp
+                                @php $numLeave = $attend->sum('leave') @endphp
+                                <tr>
+                                    <td>{{ $student->classRollNo }}</td>
+                                    <td>{{ $student->name}}</td>
+                                    <td align="center">{{ $numClass }}</td>
+                                    <td align="center">{{ $numPresent }}</td>
+                                    <td align="center">{{ $numLeave }}</td>
+                                    <td align="center">{{ ($numPresent * 100) / $numClass }} %</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

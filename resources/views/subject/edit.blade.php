@@ -39,13 +39,13 @@
                             <div class="form-group">
                                 <label for="semester">Semester</label>
                                 <select name="semester" class="form-control" required>
-                                    <option value="" selected>Select Semester</option>
-                                    <option value="1">I Semster</option>
-                                    <option value="2">II Semster</option>
-                                    <option value="3">III Semster</option>
-                                    <option value="4">IV Semster</option>
-                                    <option value="5">V Semster</option>
-                                    <option value="6">VI Semster</option>
+                                    <option value="{{ $subject->semester }}" selected>{{ $subject->semester }} Semester</option>
+                                    <option value="1">1 Semester</option>
+                                    <option value="2">2 Semester</option>
+                                    <option value="3">3 Semester</option>
+                                    <option value="4">4 Semester</option>
+                                    <option value="5">5 Semester</option>
+                                    <option value="6">6 Semester</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -71,7 +71,6 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Course Name</th>
-                                <th>Faculty Name</th>
                                 <th>Subject Name</th>
                                 <th>Semester</th>
                                 <th>Action</th>

@@ -352,10 +352,11 @@ return [
             'text' => ' Student',
             'url' => 'student',
             'icon' => 'fas fa-user-circle',
+            'can'  => ['isAdmin'],
         ],
         [
             'text' => 'change_password',
-            'url' => 'admin/settings',
+            'url' => '/changePassword',
             'icon' => 'fas fa-fw fa-lock',
         ],
 

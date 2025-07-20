@@ -156,18 +156,19 @@ class AttendanceController extends Controller
 
     public function markAttendance($id)
     {
-        //dd(date('Y-m-d'));
+        //dd($id);
         $subject = Subject::find($id);
         $faculty = Faculty::where('userId',Auth::user()->id)->first();
         $attendance = Attendance::where('courseId',$subject->courseId)
             ->where('facultyId',$faculty->id)
             ->where('subjectId',$subject->id)
             ->where('semester',$subject->semester)
-            ->where('date','2025-07-19')
+            ->where('date',date('Y-m-d'))
             ->get();
         $students = Student::where('courseId',$subject->courseId)
             ->where('currentSemester',$subject->semester)
             ->get();
+        //dd($subject->courseId);
         if($attendance->count())
         {
             return view('attendance.updateAttendance',compact(
@@ -216,18 +217,6 @@ class AttendanceController extends Controller
                     $attendance->leave = null;
                     $attendance->save();
                 }
-                else
-                {
-                    $attendance = new Attendance;
-                    $attendance->courseId = $subject->courseId;
-                    $attendance->facultyId = $faculty->id;
-                    $attendance->subjectId = $subject->id;
-                    $attendance->studentId = $student->id;
-                    $attendance->semester = $subject->semester;
-                    $attendance->date = date('Y-m-d');
-                    $attendance->mark = 1;
-                    $attendance->save();
-                }
 
             }
             elseif($request->$leave)
@@ -245,48 +234,8 @@ class AttendanceController extends Controller
                     $attendance->leave = 1;
                     $attendance->save();
                 }
-                else
-                {
-                    $attendance = new Attendance;
-                    $attendance->courseId = $subject->courseId;
-                    $attendance->facultyId = $faculty->id;
-                    $attendance->subjectId = $subject->id;
-                    $attendance->studentId = $student->id;
-                    $attendance->semester = $subject->semester;
-                    $attendance->date = date('Y-m-d');
-                    $attendance->leave = 1;
-                    $attendance->save();
-                }
             }
-            else
-            {
-                $attendance = Attendance::where('courseId',$subject->courseId)
-                    ->where('facultyId',$faculty->id)
-                    ->where('subjectId',$subject->id)
-                    ->where('studentId',$student->id)
-                    ->where('semester',$subject->semester)
-                    ->where('date',date('Y-m-d'))
-                    ->first();
-                if($attendance)
-                {
-                    $attendance->mark = null;
-                    $attendance->leave = null;
-                    $attendance->save();
-                }
-                else
-                {
-                    $attendance = new Attendance;
-                    $attendance->courseId = $subject->courseId;
-                    $attendance->facultyId = $faculty->id;
-                    $attendance->subjectId = $subject->id;
-                    $attendance->studentId = $student->id;
-                    $attendance->semester = $subject->semester;
-                    $attendance->mark = null;
-                    $attendance->leave = null;
-                    $attendance->date = date('Y-m-d');
-                    $attendance->save();
-                }
-            }
+
         }
         return redirect('/attendance')->with('success','Attendance successfully Updated');
     }
@@ -403,7 +352,39 @@ class AttendanceController extends Controller
         }
         else
         {
-           return back()->with('warning','No Attendance on the current month');
+           return redirect('attendance')->with('warning','No Attendance on the current month');
+        }
+    }
+    public function viewAttendanceMonth(Request $request)
+    {
+        $month = substr($request->month, 5, 7);
+        $year = substr($request->month, 0, 4);
+        //dd($year);
+        $subject = Subject::find($request->subjectId);
+        $faculty = Faculty::where('userId',Auth::user()->id)->first();
+        $attendance = Attendance::where('courseId',$subject->courseId)
+        ->where('facultyId',$faculty->id)
+        ->where('subjectId',$subject->id)
+        ->where('semester',$subject->semester)
+        ->whereMonth('date',$month)
+        ->whereYear('date',$year)
+        ->get();
+        //dd($attendance);
+        $students = Student::where('courseId',$subject->courseId)
+            ->where('currentSemester',$subject->semester)
+            ->get();
+        if($attendance->count())
+        {
+            return view('attendance.viewAttendance',compact(
+                    'subject',
+                    'students',
+                    'faculty',
+                    'attendance',
+                ));
+        }
+        else
+        {
+           return redirect('attendance')->with('warning','No Attendance on Selected Month');
         }
     }
 }
