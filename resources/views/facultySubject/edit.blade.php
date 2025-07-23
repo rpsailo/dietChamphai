@@ -81,11 +81,11 @@
                                 <td>{{ $facultySubject->semesterId }} Semester</td>
                                 <td>
                                     {{-- Custom --}}
-                                    <x-adminlte-modal id="modalCustom{{ $subject->id }}" title="Delete Warning" size="lg" theme="teal"
+                                    <x-adminlte-modal id="modalCustom{{ $facultySubject->id }}" title="Delete Warning" size="lg" theme="teal"
                                     icon="fas fa-bell" v-centered>
                                     <div style="height:100px;">Are You Sure</div>
                                     <x-slot name="footerSlot">
-                                        <x-adminlte-button class="mr-auto" onclick="location.href='/deleteFacultySubject/{{ $subject->id }}'" theme="success" label="Yes"/>
+                                        <x-adminlte-button class="mr-auto" onclick="location.href='/deleteFacultySubject/{{ $facultySubject->id }}'" theme="success" label="Yes"/>
                                         <x-adminlte-button theme="danger" label="No" data-dismiss="modal"/>
                                     </x-slot>
                                     </x-adminlte-modal>

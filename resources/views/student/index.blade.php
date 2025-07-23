@@ -60,8 +60,61 @@
                                     </x-adminlte-modal>
                                     {{-- Example button to open modal --}}
                                     <button type='button' class="btn btn-danger btn-sm " data-toggle="modal" data-target="#modalCustom{{ $student->id }}">Delete</button>
-                                    <button type='button' class="btn btn-primary btn-sm " onclick="location.href='{{ route('student.edit',$student) }}'">Edit</button>
-                                    <button type='button' class="btn btn-warning btn-sm " onclick="location.href='/viewStudent/{{ $student->id }}'">View</button>
+                                    <button type='button' class="btn btn-primary btn-sm " onclick="location.href='{{ route('student.edit',$student) }}'"> Edit</button>
+                                    <x-adminlte-modal id="view{{ $student->id }}" title="Student Details" size="lg" theme="teal"
+                                        icon="fas fa-bell" v-centered static-backdrop scrollable>
+                                        <div>
+                                            @php
+                                                /* $fac = $faculties->where('id',$faculty->id)->first();
+                                                $user = $users->where('id',$fac->userId)->first(); */
+                                            @endphp
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Academic Year</td>
+                                                        <td>{{ $student->academicYear }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>{{ $student->name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Class Roll No</td>
+                                                        <td>{{ $student->classRollNo }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Board Roll No</td>
+                                                        <td>{{ $student->boardRollNo }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Contact</td>
+                                                        <td>{{ $student->contact }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Address</td>
+                                                        <td>{{ $student->address }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Date of Birth</td>
+                                                        <td>{{ $student->dob }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Blood Group</td>
+                                                        <td>{{ $student->bloodGroup }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Id Mark</td>
+                                                        <td>{{ $student->idMark }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                        <x-slot name="footerSlot">
+                                        </x-slot>
+                                    </x-adminlte-modal>
+                                    {{-- Example button to open modal --}}
+                                    <button type='button' class="btn btn-success btn-sm " data-toggle="modal" data-target="#view{{ $student->id }}"><i class="fa fa-eye"></i> View</button>
                                 </td>
                             </tr>
                             @endforeach

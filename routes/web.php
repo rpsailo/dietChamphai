@@ -10,7 +10,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\FacultyController;
-use App\Http\Controllers\FacultysubjectController;
+use App\Http\Controllers\facultySubjectController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\changePasswordController;
 
@@ -39,7 +39,7 @@ Route::resource('course', CourseController::class);
 Route::resource('subject', SubjectController::class);
 Route::resource('faculty', FacultyController::class);
 Route::resource('student', StudentController::class);
-Route::resource('facultySubject', FacultysubjectController::class);
+Route::resource('facultySubject', facultySubjectController::class);
 Route::resource('attendance', AttendanceController::class);
 Route::resource('changePassword', changePasswordController::class);
 
@@ -73,9 +73,9 @@ Route::get('/deleteStudent/{id}', [StudentController::class, 'deleteStudent']);
 
 Route::post('logout', [LogoutController::class, 'index']);
 
-Route::get('/selectSemesterCourse', [FacultysubjectController::class, 'selectSemesterCourse']);
-Route::get('/deleteFacultySubject/{id}', [FacultysubjectController::class, 'deleteFacultySubject']);
-Route::get('/editFacultySubject/{id}', [FacultysubjectController::class, 'editFacultySubject']);
+Route::get('/selectSemesterCourse', [facultySubjectController::class, 'selectSemesterCourse']);
+Route::get('/deletefacultySubject/{id}', [facultySubjectController::class, 'deleteFacultySubject']);
+Route::get('/editfacultySubject/{id}', [facultySubjectController::class, 'editFacultySubject']);
 
 Route::get('/markAttendance/{id}', [AttendanceController::class, 'markAttendance']);
 Route::get('/updateAttendance', [AttendanceController::class, 'updateAttendance']);

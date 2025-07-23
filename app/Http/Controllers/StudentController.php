@@ -23,7 +23,7 @@ class StudentController extends Controller
     public function index()
     {
        $course = Course::all();
-       $students = Student::where('status',1)->get();
+       $students = Student::all();
        return view('student.index',
             compact(
                 'course',

@@ -179,4 +179,10 @@ class facultySubjectController extends Controller
 
         );
     }
+
+    public function deletefacultySubject($id)
+    {
+        $facultySubject = Facultysubject::find($id)->delete();
+        return back()->with('success','Faculty Subject Combination has been deleted');
+    }
 }
